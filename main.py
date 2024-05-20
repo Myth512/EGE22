@@ -50,6 +50,7 @@ number_of_tasks = 3
 # порядок в котором надо обрабатывать процессы
 order = [tasks.index(i) for i in sorted(tasks, key=lambda x: max(x.deps, default=0))]
 
+#сейчас это магическое число, но потом пофикшу
 max_len = 24
 
 mx = 0
