@@ -45,7 +45,7 @@ tasks = [Task(2, []),
          Task(5, []),
          Task(9, [12])]
 
-number_of_tasks = 3
+target_number_of_tasks = 3
 
 # порядок в котором надо обрабатывать процессы
 order = [tasks.index(i) for i in sorted(tasks, key=lambda x: max(x.deps, default=0))]
@@ -64,7 +64,7 @@ for N in range(5):
             for task, delay in zip(task_combinations, delay_combinations):
                 tasks[task].delay = delay
             if calc():
-                current = get_max_len(build_timeline(), number_of_tasks)
+                current = get_max_len(build_timeline(), target_number_of_tasks)
                 if current > mx:
                     mx = current
                     print(mx, {r+1: tasks[r].delay for r in task_combinations})
