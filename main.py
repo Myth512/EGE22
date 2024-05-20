@@ -1,6 +1,7 @@
 from itertools import *
 
 def calc():
+    '''функция производит вычисления положения процессов на таймлайне'''
     for task in tasks:
         max_dep = max([tasks[i-1].end for i in task.deps], default=0)
         task.end = task.duration + max_dep + task.delay
@@ -10,6 +11,8 @@ def calc():
 
 
 def build_timeline():
+    '''функция строит таймлайн в ввиде массива чисел,
+     отражающих кол-во процеесов в момент времени'''
     timeline = [0] * threshold
     for task in tasks:
         for i in range(task.end - task.duration, task.end):
@@ -18,6 +21,7 @@ def build_timeline():
 
 
 def get_max_len(timeline, number_of_task):
+    '''функция возвращает длину максимального отрезка из чисел'''
     for i in range(len(timeline)):
         if timeline[i] != number_of_task:
             timeline[i] = ' '
