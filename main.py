@@ -20,12 +20,12 @@ def build_timeline():
     return timeline
 
 
-def get_max_len(timeline, number_of_task):
-    '''функция возвращает длину максимального отрезка из чисел'''
+def get_max_len(timeline, number):
+    '''функция возвращает длину максимального отрезка, состоящего только из числа number'''
     for i in range(len(timeline)):
-        if timeline[i] != number_of_task:
+        if timeline[i] != number:
             timeline[i] = ' '
-    return max(map(len,''.join(map(str,timeline)).split()), default=0)
+    return max(map(len, ''.join(map(str, timeline)).split()), default=0)
 
 class Task:
     def __init__(self, duration, deps):
@@ -60,15 +60,15 @@ threshold = 24 # максимальная длина таймлайна
 max_length = 0
 current_length = 0
 
-for N in range(5):
-    for task_combinations in combinations(order, r=N):
+for number_of_tasks in range(5):
+    for task_combinations in combinations(order, r=number_of_tasks):
         for task in tasks:
             task.delay = 0
-        for delay_combinations in product(range(1, threshold), repeat=N):
+        for delay_combinations in product(range(1, threshold), repeat=number_of_tasks):
             for task, delay in zip(task_combinations, delay_combinations):
                 tasks[task].delay = delay
             if calc():
                 current_length = get_max_len(build_timeline(), target_number_of_tasks)
                 if current_length > max_length:
                     max_length = current_length
-                    print(max_length, {r+1: tasks[r].delay for r in task_combinations})
+                    print(max_length, {i+1: tasks[i].delay for i in task_combinations})
