@@ -21,7 +21,7 @@ def build_timeline():
 
 
 def get_max_len(timeline, number_of_task):
-    '''функция возвращает длину максимального отрезка из чисел'''
+    '''функция возвращает длину максимального отрезка, состоящего из числа number_of_tasks'''
     for i in range(len(timeline)):
         if timeline[i] != number_of_task:
             timeline[i] = ' '
