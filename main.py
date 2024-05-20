@@ -1,5 +1,6 @@
 from itertools import *
 
+
 def calc():
     '''функция производит вычисления положения процессов на таймлайне'''
     for task in tasks:
@@ -12,7 +13,7 @@ def calc():
 
 def build_timeline():
     '''функция строит таймлайн в ввиде массива чисел,
-     отражающих кол-во процеесов в момент времени'''
+     отражающих кол-во исполняемых процеcсов в момент времени'''
     timeline = [0] * threshold
     for task in tasks:
         for i in range(task.end - task.duration, task.end):
@@ -26,6 +27,7 @@ def get_max_len(timeline, number):
         if timeline[i] != number:
             timeline[i] = ' '
     return max(map(len, ''.join(map(str, timeline)).split()), default=0)
+
 
 class Task:
     def __init__(self, duration, deps):
@@ -49,7 +51,6 @@ tasks = [Task(2, []),
          Task(5, []),
          Task(9, [12])]
 
-# количество задач из условия
 target_number_of_tasks = 3
 
 # порядок в котором надо обрабатывать процессы
